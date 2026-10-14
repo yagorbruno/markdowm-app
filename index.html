@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: file: https:; style-src 'self' 'unsafe-inline'" />
+    <link rel="icon" href="data:," />
+    <title>Markdown</title>
+  </head>
+  <body>
+    <header id="bar">
+      <span id="filename">Sem título</span>
+      <span id="dirty" hidden>●</span>
+      <span class="spacer"></span>
+      <button id="btn-open" title="Abrir (Ctrl+O)">Abrir</button>
+      <button id="btn-save" title="Salvar (Ctrl+S)">Salvar</button>
+    </header>
+    <main id="scroll"><div id="editor"></div></main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
