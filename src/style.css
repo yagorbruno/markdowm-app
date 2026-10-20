@@ -1,3 +1,4 @@
+/* Tema claro (padrão). Dark e paper ficam em data-theme; "Sistema" é resolvido em main.js. */
 :root {
   --bg: #ffffff;
   --fg: #1f2328;
@@ -6,24 +7,40 @@
   --code-bg: #f3f4f6;
   --accent: #0969da;
   --bar: #f6f8fa;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117;
-    --fg: #e6edf3;
-    --muted: #8d96a0;
-    --border: #30363d;
-    --code-bg: #161b22;
-    --accent: #58a6ff;
-    --bar: #161b22;
-  }
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --fg: #e6edf3;
+  --muted: #8d96a0;
+  --border: #30363d;
+  --code-bg: #161b22;
+  --accent: #58a6ff;
+  --bar: #161b22;
+  color-scheme: dark;
+}
+:root[data-theme="paper"] {
+  --bg: #f7f1e3;
+  --fg: #3a3024;
+  --muted: #8a7b66;
+  --border: #d9ccb2;
+  --code-bg: #efe6d2;
+  --accent: #8a4b1f;
+  --bar: #efe7d4;
+  --font: "Iowan Old Style", Georgia, "Times New Roman", serif;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 body {
   display: flex; flex-direction: column;
   background: var(--bg); color: var(--fg);
-  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+  font: 16px/1.65 var(--font);
+}
+#theme {
+  font: inherit; font-size: 13px; color: inherit; background: transparent;
+  border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; cursor: pointer;
 }
 #bar {
   display: flex; align-items: center; gap: 8px;

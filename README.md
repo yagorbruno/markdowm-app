@@ -2,8 +2,8 @@
 
 # Markdown
 
-**A minimalist single-pane Markdown editor and reader for Windows.**<br>
-**Editor e leitor de Markdown minimalista, em uma única tela, para Windows.**
+**A minimalist single-pane Markdown editor and reader for Windows and macOS (Apple Silicon).**<br>
+**Editor e leitor de Markdown minimalista, em uma única tela, para Windows e macOS (Apple Silicon).**
 
 [**⬇ Download**](../../releases/latest) · [English](#english) · [Português](#português)
 
@@ -32,9 +32,14 @@ Markdown.
 
 Shortcuts: `Ctrl+O` open · `Ctrl+S` save.
 
+- **Themes:** System (default, follows Windows/macOS light or dark mode), Light, Dark or Paper (cream background
+  with a serif font). Pick it in the dropdown at the top right; the choice is remembered.
+
 > The interface (buttons and placeholder) is currently in Portuguese.
 
 ### Install
+
+**Windows**
 
 1. Go to the [latest release](../../releases/latest).
 2. Download **`Markdown Setup x.y.z.exe`** (installer) or **`Markdown x.y.z.exe`** (portable, no install).
@@ -42,6 +47,25 @@ Shortcuts: `Ctrl+O` open · `Ctrl+S` save.
 
 The app is not code-signed, so Windows SmartScreen may show *"Windows protected your PC"* the first time.
 Click **More info → Run anyway**.
+
+**macOS (Apple Silicon: M1, M2, M3, M4…)**
+
+1. Go to the [latest release](../../releases/latest) and download **`Markdown-x.y.z-arm64.dmg`**.
+2. Open the `.dmg` and drag **Markdown** into **Applications**.
+3. Open it from Applications or Launchpad.
+
+Intel Macs are not supported by this build.
+
+The app is not notarized by Apple, so macOS may block it the first time with *"Markdown can't be opened"*. To allow it:
+
+- Right-click (or Control-click) **Markdown** in Applications → **Open** → **Open**, or
+- Go to **System Settings → Privacy & Security**, scroll down to the message about Markdown and click **Open Anyway**, or
+- In Terminal, remove the quarantine flag once:
+  ```bash
+  xattr -cr /Applications/Markdown.app
+  ```
+
+If it still won't open, check that you downloaded the `arm64` file and not an Intel one.
 
 ### Make it the default app for `.md`
 
@@ -52,6 +76,12 @@ Windows does not let apps set themselves as the default, so do this once:
 
 Or go to **Settings → Apps → Default apps**, search for `.md` and choose Markdown.
 
+### Make it the default app for `.md` on macOS
+
+1. In Finder, select any `.md` file and press `Cmd+I` (Get Info).
+2. Under **Open with**, choose **Markdown**.
+3. Click **Change All…** and confirm.
+
 ### Build from source
 
 Requires [Node.js](https://nodejs.org) 22+.
@@ -60,7 +90,8 @@ Requires [Node.js](https://nodejs.org) 22+.
 npm install
 npm start          # build and run the desktop app
 npm run dev        # web version at http://localhost:5173 (open/save through the browser)
-npm run dist       # build the installer and portable .exe into release/
+npm run dist       # build the installer and portable .exe into release/ (Windows)
+npm run dist:mac   # build the Apple Silicon .dmg into release/ (run on a Mac)
 ```
 
 A GitHub Actions workflow (`.github/workflows/build.yml`) builds Windows, macOS and Linux packages on `v*` tags
@@ -94,10 +125,16 @@ continua sendo Markdown puro.
   abrem o app. Se ele já estiver aberto, o arquivo carrega na mesma janela.
 - **Arrastar e soltar** um arquivo Markdown na janela.
 - **Aviso de alterações não salvas** ao abrir outro arquivo ou fechar a janela.
+- **Temas:** Sistema (padrão, segue o modo claro/escuro do Windows ou do macOS), Claro, Escuro ou Paper (fundo
+  creme com fonte serifada). Escolha no seletor no canto superior direito; a escolha fica salva.
 
-Atalhos: `Ctrl+O` abrir · `Ctrl+S` salvar.
+Atalhos: `Ctrl+O` abrir · `Ctrl+S` salvar (no Mac, `Cmd` no lugar de `Ctrl`).
+
+> A interface (botões e placeholder) está em português por enquanto.
 
 ### Instalar
+
+**Windows**
 
 1. Abra a [última release](../../releases/latest).
 2. Baixe **`Markdown Setup x.y.z.exe`** (instalador) ou **`Markdown x.y.z.exe`** (portátil, sem instalar).
@@ -105,6 +142,27 @@ Atalhos: `Ctrl+O` abrir · `Ctrl+S` salvar.
 
 O app não é assinado digitalmente, então o SmartScreen do Windows pode mostrar *"O Windows protegeu seu PC"* na
 primeira vez. Clique em **Mais informações → Executar assim mesmo**.
+
+**macOS (Apple Silicon: M1, M2, M3, M4…)**
+
+1. Abra a [última release](../../releases/latest) e baixe **`Markdown-x.y.z-arm64.dmg`**.
+2. Abra o `.dmg` e arraste o **Markdown** para a pasta **Applications** (Aplicativos).
+3. Abra pelo Launchpad ou pela pasta Aplicativos.
+
+Macs Intel não são suportados por este build.
+
+O app não é notarizado pela Apple, então o macOS pode bloqueá-lo na primeira vez com *"Markdown não pode ser
+aberto"*. Para liberar:
+
+- Clique com o botão direito (ou Control+clique) em **Markdown** em Aplicativos → **Abrir** → **Abrir**, ou
+- Vá em **Ajustes do Sistema → Privacidade e Segurança**, role até a mensagem sobre o Markdown e clique em
+  **Abrir Assim Mesmo**, ou
+- No Terminal, remova a marcação de quarentena uma vez:
+  ```bash
+  xattr -cr /Applications/Markdown.app
+  ```
+
+Se ainda não abrir, confira se você baixou o arquivo `arm64` e não uma versão Intel.
 
 ### Definir como app padrão para `.md`
 
@@ -115,6 +173,12 @@ O Windows não deixa um programa se definir como padrão sozinho, então faça i
 
 Ou vá em **Configurações → Aplicativos → Aplicativos padrão**, procure `.md` e escolha o Markdown.
 
+### Definir como app padrão para `.md` no macOS
+
+1. No Finder, selecione um arquivo `.md` e pressione `Cmd+I` (Obter Informações).
+2. Em **Abrir com**, escolha **Markdown**.
+3. Clique em **Alterar Todos…** e confirme.
+
 ### Compilar do código-fonte
 
 Requer [Node.js](https://nodejs.org) 22+.
@@ -123,7 +187,8 @@ Requer [Node.js](https://nodejs.org) 22+.
 npm install
 npm start          # compila e abre o app de desktop
 npm run dev        # versão web em http://localhost:5173 (abrir/salvar via navegador)
-npm run dist       # gera o instalador e o .exe portátil em release/
+npm run dist       # gera o instalador e o .exe portátil em release/ (Windows)
+npm run dist:mac   # gera o .dmg para Apple Silicon em release/ (rodar em um Mac)
 ```
 
 Um workflow do GitHub Actions (`.github/workflows/build.yml`) gera pacotes para Windows, macOS e Linux em tags

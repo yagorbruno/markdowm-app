@@ -167,6 +167,28 @@ async function saveFile() {
 $('btn-open').onclick = openFile
 $('btn-save').onclick = saveFile
 
+// Tema: "system" segue o SO; os demais forçam o tema. Escolha fica salva no navegador.
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)')
+const themeSelect = $('theme')
+let themePref = 'system'
+
+function applyTheme() {
+  const resolved = themePref === 'system' ? (systemDark.matches ? 'dark' : 'light') : themePref
+  document.documentElement.dataset.theme = resolved
+  themeSelect.value = themePref
+}
+
+function setTheme(pref) {
+  themePref = pref
+  try { localStorage.setItem('theme', pref) } catch { /* armazenamento indisponível: segue só na sessão */ }
+  applyTheme()
+}
+
+try { themePref = localStorage.getItem('theme') || 'system' } catch { /* idem */ }
+themeSelect.onchange = () => setTheme(themeSelect.value)
+systemDark.addEventListener('change', () => { if (themePref === 'system') applyTheme() })
+applyTheme()
+
 window.addEventListener('keydown', (e) => {
   if (!(e.ctrlKey || e.metaKey) || e.altKey) return
   const k = e.key.toLowerCase()
